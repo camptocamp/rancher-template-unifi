@@ -16,7 +16,7 @@ version: '2'
         - variable: "MONGO_HOST"
           label: "Mongo server address"
           description: "Mongo server address"
-          type: "string"
+          type: "service"
           required: true
         - variable: "MONGO_PORT"
           label: "Mongo server port"
