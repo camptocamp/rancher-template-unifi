@@ -13,16 +13,6 @@ version: '2'
           description: "the Mongo database to use"
           type: "string"
           required: true
-        - variable: "MONGO_HOST"
-          label: "Mongo server address"
-          description: "Mongo server address"
-          type: "service"
-          required: true
-        - variable: "MONGO_PORT"
-          label: "Mongo server port"
-          description: "Mongo server port"
-          type: "string"
-          required: true
         - variable: "MONGO_USERNAME"
           label: "Mongo username"
           description: "Username of the Mongo server"

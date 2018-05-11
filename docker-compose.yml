@@ -24,8 +24,6 @@ services:
         environment:
             SYSTEM_IP: ${SYSTEM_IP}
             UNIFI_DB: ${UNIFI_DB}
-            MONGO_HOST: ${MONGO_HOST}
-            MONGO_PORT: ${MONGO_PORT}
             MONGO_USERNAME: ${MONGO_USERNAME}
             MONGO_PASSWORD: ${MONGO_PASSWORD}
 
