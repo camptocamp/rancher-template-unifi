@@ -14,8 +14,6 @@ services:
             - "9443:9443"
         labels:
             io.rancher.sidekicks: unifi-conf
-        volumes_from:
-            - unifi-conf
 
     unifi-conf:
         image: camptocamp/unifi-conf:latest
@@ -26,6 +24,8 @@ services:
             UNIFI_DB: ${UNIFI_DB}
             MONGO_USERNAME: ${MONGO_USERNAME}
             MONGO_PASSWORD: ${MONGO_PASSWORD}
+        volumes:
+            - "unifi-data:/var/lib/unifi"
 
     mongodb:
         image: mongo:3.0
