@@ -1,0 +1,35 @@
+version: '2'
+.catalog:
+    name: "unifi"
+    version: "v5.7.23"
+    questions:
+        - variable: "SYSTEM_IP"
+          label: "System IP"
+          description: "IP devices should be talking to for inform"
+          type: "string"
+          required: true
+        - variable: "UNIFI_DB"
+          label: "Unifi database name"
+          description: "the Mongo database to use"
+          type: "string"
+          required: true
+        - variable: "MONGO_HOST"
+          label: "Mongo server address"
+          description: "Mongo server address"
+          type: "string"
+          required: true
+        - variable: "MONGO_PORT"
+          label: "Mongo server port"
+          description: "Mongo server port"
+          type: "string"
+          required: true
+        - variable: "MONGO_USERNAME"
+          label: "Mongo username"
+          description: "Username of the Mongo server"
+          type: "string"
+          required: true
+        - variable: "MONGO_PASSWORD"
+          label: "Mongo password"
+          description: "Password of the Mongo server"
+          type: "password"
+          required: true
