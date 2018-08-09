@@ -1,7 +1,7 @@
 version: '2'
 .catalog:
     name: "unifi"
-    version: "v5.7.23"
+    version: "v5.7.23-1"
     questions:
         - variable: "SYSTEM_IP"
           label: "System IP"

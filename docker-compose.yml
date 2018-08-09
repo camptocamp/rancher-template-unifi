@@ -1,36 +1,39 @@
 version: '2'
 services:
-    unifi:
-        image: camptocamp/unifi:latest
-        volumes:
-            - "unifi-data:/var/lib/unifi"
-        ports:
-            - "3478:3478/udp"
-            - "10001:10001/udp"
-            - "8880:8880"
-            - "8443:8443"
-            - "8843:8843"
-            - "6789:6789"
-            - "9443:9443"
-        labels:
-            io.rancher.sidekicks: unifi-conf
+  unifi:
+    image: camptocamp/unifi:latest
+    volumes:
+      - "unifi-data:/var/lib/unifi"
+    ports:
+      - "3478:3478/udp"
+      - "10001:10001/udp"
+      - "8880:8880"
+      - "8443:8443"
+      - "8843:8843"
+      - "6789:6789"
+      - "9443:9443"
+    labels:
+      io.rancher.sidekicks: unifi-conf
+      io.rancher.scheduler.affinity:host_label: data.unifi=true
 
-    unifi-conf:
-        image: camptocamp/unifi-conf:latest
-        labels:
-            io.rancher.container.start_once: 'true'
-        environment:
-            SYSTEM_IP: ${SYSTEM_IP}
-            UNIFI_DB: ${UNIFI_DB}
-            MONGO_USERNAME: ${MONGO_USERNAME}
-            MONGO_PASSWORD: ${MONGO_PASSWORD}
-        volumes:
-            - "unifi-data:/var/lib/unifi"
+  unifi-conf:
+    image: camptocamp/unifi-conf:latest
+    labels:
+      io.rancher.container.start_once: 'true'
+    environment:
+      SYSTEM_IP: ${SYSTEM_IP}
+      UNIFI_DB: ${UNIFI_DB}
+      MONGO_USERNAME: ${MONGO_USERNAME}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+      - "unifi-data:/var/lib/unifi"
 
-    mongodb:
-        image: mongo:3.0
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
-            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
-        volumes:
-            - "unifi-db:/data/db"
+  mongodb:
+    image: mongo:3.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+      - "unifi-db:/data/db"
+    labels:
+      io.rancher.scheduler.affinity:host_label: data.unifi=true
