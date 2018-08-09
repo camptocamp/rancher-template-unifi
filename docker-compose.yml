@@ -35,5 +35,17 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
     volumes:
       - "unifi-db:/data/db"
+    volumes_from:
+      - unifi-mongo-init
     labels:
       io.rancher.scheduler.affinity:host_label: data.unifi=true
+      io.rancher.sidekicks: unifi-mongo-init
+
+  unifi-mongo-init:
+    image: cryptobioz/unifi-mongo-init:latest
+    labels:
+      io.rancher.container.start_once: 'true'
+    environment:
+      UNIFI_DB: ${UNIFI_DB}
+      MONGO_USERNAME: ${MONGO_USERNAME}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
